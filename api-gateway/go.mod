@@ -1,4 +1,4 @@
-module auth-service
+module api-gateway
 
 go 1.24.0
 

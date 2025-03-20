@@ -30,6 +30,7 @@ func main() {
 		brandsRoutes.GET("/brand", reverseProxy("http://localhost:8081"))
 		brandsRoutes.GET("/config-brands", reverseProxy("http://localhost:8081"))
 		brandsRoutes.GET("/config-brand", reverseProxy("http://localhost:8081"))
+		brandsRoutes.GET("/config-brands/brand", reverseProxy("http://localhost:8081"))
 
 	}
 	modelRoutes := r.Group("/models")
@@ -42,13 +43,6 @@ func main() {
 		storageRoutes.GET("/storages", reverseProxy("http://localhost:8083"))
 		storageRoutes.GET("/storage", reverseProxy("http://localhost:8083"))
 	}
-	phoneRoutes := r.Group("/phones")
-	{
-		phoneRoutes.GET("/phones", reverseProxy("http://localhost:8086"))
-		phoneRoutes.GET("/phone", reverseProxy("http://localhost:8086"))
-		phoneRoutes.GET("/price-deductions", reverseProxy("http://localhost:8086"))
-		phoneRoutes.GET("/price-deduction", reverseProxy("http://localhost:8086"))
-	}
 	defectRoutes := r.Group("/defects")
 	{
 		defectRoutes.GET("/defects", reverseProxy("http://localhost:8084"))
@@ -59,6 +53,14 @@ func main() {
 		defectChoiceRoutes.GET("/defect-choices", reverseProxy("http://localhost:8085"))
 		defectChoiceRoutes.GET("/defect-choice", reverseProxy("http://localhost:8085"))
 		defectChoiceRoutes.GET("/defect-choice/defects", reverseProxy("http://localhost:8085"))
+	}
+	phoneRoutes := r.Group("/phones")
+	{
+		phoneRoutes.GET("/phones", reverseProxy("http://localhost:8086"))
+		phoneRoutes.GET("/phone", reverseProxy("http://localhost:8086"))
+		phoneRoutes.GET("/price-deductions", reverseProxy("http://localhost:8086"))
+		phoneRoutes.GET("/price-deduction", reverseProxy("http://localhost:8086"))
+		phoneRoutes.GET("/price-deductions/phone", reverseProxy("http://localhost:8086"))
 	}
 
 	r.GET("/", func(c *gin.Context) {

@@ -26,3 +26,12 @@ func GetConfigPriceDeductionByID(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, phoneDeductions)
 }
+func GetPriceDeductionByPhoneID(c *gin.Context) {
+	var phoneDeductions []models.PriceDeductions
+	phoneID := c.Query("id")
+	if err := config.DB.Where("phone_id = ?", phoneID).Find(&phoneDeductions).Error; err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "Record not found"})
+		return
+	}
+	c.JSON(http.StatusOK, phoneDeductions)
+}

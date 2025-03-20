@@ -13,9 +13,9 @@ type DefectChoice struct {
 	DefectID   uuid.UUID `json:"defectId"`
 	ChoiceCode string    `json:"choiceCode"`
 	ChoiceName string    `json:"choiceName"`
-	CreatedAt  string    `json:"createdAt"` // เพิ่มฟิลด์นี้ถ้าจำเป็น
-	UpdatedAt  string    `json:"updatedAt"` // เพิ่มฟิลด์นี้ถ้าจำเป็น
-	IsDeleted  bool      `json:"isDeleted"` // เพิ่มฟิลด์นี้ถ้าจำเป็น
+	CreatedAt  string    `json:"createdAt"`
+	UpdatedAt  string    `json:"updatedAt"`
+	IsDeleted  bool      `json:"isDeleted"`
 }
 
 func FetchDefectChoices(defectID uuid.UUID) ([]DefectChoice, error) {

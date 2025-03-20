@@ -26,3 +26,12 @@ func GetConfigBrandByID(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, configBrand)
 }
+func GetConfigBrandByBrandID(c *gin.Context) {
+	var configBrands []models.ConfigBrands
+	brandID := c.Query("id")
+	if err := config.DB.Where("brand_id = ? AND is_deleted = FALSE", brandID).Find(&configBrands).Error; err != nil {
+		c.JSON(http.StatusNotFound, gin.H{"error": "ConfigBrands not found"})
+		return
+	}
+	c.JSON(http.StatusOK, configBrands)
+}

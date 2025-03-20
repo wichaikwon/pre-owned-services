@@ -22,10 +22,11 @@ func BrandRoutes(r *gin.Engine) {
 		brand.GET("/brand", brandControllers.GetBrandByID)
 		brand.GET("/config-brands", configControllers.GetConfigBrands)
 		brand.GET("/config-brand", configControllers.GetConfigBrandByID)
-		brand.POST("/brand/create", brandControllers.CreateBrand)
+		brand.GET("/config-brands/brand", configControllers.GetConfigBrandByBrandID)
+		brand.POST("/brands/create", brandControllers.CreateBrands)
 		brand.PUT("/brand/update", brandControllers.UpdateBrand)
 		brand.PUT("/brand/delete", brandControllers.DeleteBrand)
-		brand.PUT("/config-brand/update", configControllers.ToggleStatusConfigBrand)
+		brand.PUT("/config-brands/update", configControllers.ToggleStatusConfigBrand)
 	}
 
 }

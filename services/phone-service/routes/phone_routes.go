@@ -20,11 +20,13 @@ func PhoneRoutes(r *gin.Engine) {
 	{
 		phone.GET("/phones", phoneControllers.GetPhones)
 		phone.GET("/phone", phoneControllers.GetPhone)
-		phone.POST("/phone/create", phoneControllers.CreatePhone)
-		phone.PUT("/phone/update", phoneControllers.UpdatePhone)
-		phone.PATCH("/phone/delete", phoneControllers.DeletePhone)
 		phone.GET("/price-deductions", configControllers.GetConfigPriceDeductions)
 		phone.GET("/price-deduction", configControllers.GetConfigPriceDeductionByID)
+		phone.GET("/price-deductions/phone", configControllers.GetPriceDeductionByPhoneID)
+		phone.PATCH("/price-deductions/update", configControllers.UpdateDeductions)
+		phone.POST("/phone/create", phoneControllers.CreatePhones)
+		phone.PUT("/phone/update", phoneControllers.UpdatePhone)
+		phone.PATCH("/phone/delete", phoneControllers.DeletePhone)
 		phone.PATCH("/price-deduction/update", configControllers.UpdateConfigPriceDeduction)
 	}
 }
