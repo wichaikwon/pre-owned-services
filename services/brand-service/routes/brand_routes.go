@@ -11,7 +11,7 @@ import (
 func BrandRoutes(r *gin.Engine) {
 	r.Use(cors.New(cors.Config{
 		AllowOrigins:     []string{"http://localhost:3000"},
-		AllowMethods:     []string{"PUT", "DELETE", "OPTIONS"},
+		AllowMethods:     []string{"PUT", "PATCH", "DELETE", "OPTIONS"},
 		AllowHeaders:     []string{"Origin", "Content-Type", "Accept", "Authorization"},
 		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
@@ -26,7 +26,7 @@ func BrandRoutes(r *gin.Engine) {
 		brand.POST("/brands/create", brandControllers.CreateBrands)
 		brand.PUT("/brand/update", brandControllers.UpdateBrand)
 		brand.PUT("/brand/delete", brandControllers.DeleteBrand)
-		brand.PUT("/config-brands/update", configControllers.ToggleStatusConfigBrand)
+		brand.PATCH("/config-brands/update", configControllers.ToggleStatusConfigBrand)
 	}
 
 }

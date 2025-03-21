@@ -10,7 +10,7 @@ type Phones struct {
 	ID        uuid.UUID `json:"id" gorm:"type:uuid;primaryKey;default:uuid_generate_v4()"`
 	BrandID   uuid.UUID `json:"brandId" gorm:"type:uuid;not null"`
 	ModelID   uuid.UUID `json:"modelId" gorm:"type:uuid;not null"`
-	StorageID string    `json:"storageId" gorm:"type:uuid;not null"`
+	StorageID uuid.UUID `json:"storageId" gorm:"type:uuid;not null"`
 	PhoneCode string    `json:"phoneCode" gorm:"unique;index"`
 	PhoneName string    `json:"phoneName" gorm:"index"`
 	Price     float64   `json:"price" gorm:"default:0;index"`

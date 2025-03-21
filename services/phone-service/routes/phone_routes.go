@@ -11,8 +11,8 @@ import (
 func PhoneRoutes(r *gin.Engine) {
 	r.Use(cors.New(cors.Config{
 		AllowOrigins:     []string{"http://localhost:3000"},
-		AllowMethods:     []string{"PUT", "DELETE", "OPTIONS"},
-		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization", "application/json"},
+		AllowMethods:     []string{"PUT", "PATCH", "DELETE", "OPTIONS"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
 		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
 	}))
@@ -20,6 +20,7 @@ func PhoneRoutes(r *gin.Engine) {
 	{
 		phone.GET("/phones", phoneControllers.GetPhones)
 		phone.GET("/phone", phoneControllers.GetPhone)
+		phone.POST("final-price", phoneControllers.FinalPrice)
 		phone.GET("/price-deductions", configControllers.GetConfigPriceDeductions)
 		phone.GET("/price-deduction", configControllers.GetConfigPriceDeductionByID)
 		phone.GET("/price-deductions/phone", configControllers.GetPriceDeductionByPhoneID)
@@ -27,6 +28,5 @@ func PhoneRoutes(r *gin.Engine) {
 		phone.POST("/phone/create", phoneControllers.CreatePhones)
 		phone.PUT("/phone/update", phoneControllers.UpdatePhone)
 		phone.PATCH("/phone/delete", phoneControllers.DeletePhone)
-		phone.PATCH("/price-deduction/update", configControllers.UpdateConfigPriceDeduction)
 	}
 }

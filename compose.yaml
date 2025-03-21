@@ -38,6 +38,33 @@ services:
       - pre-owned-network
     env_file:
       - .env
+  defect-service:
+    build:
+      context: ./services/defect-service
+    ports:
+      - "8084:8080" 
+    networks:
+      - pre-owned-network
+    env_file:
+      - .env
+  defect_choice-service:
+    build:
+      context: ./services/defect_choice-service
+    ports:
+      - "8085:8080" 
+    networks:
+      - pre-owned-network
+    env_file:
+      - .env
+  phone-service:
+    build:
+      context: ./services/phone-service
+    ports:
+      - "8086:8080" 
+    networks:
+      - pre-owned-network
+    env_file:
+      - .env
   postgres:
     image: postgres:14
     environment:
