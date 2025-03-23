@@ -19,6 +19,7 @@ func ModelRoutes(r *gin.Engine) {
 	{
 		model.GET("/models", controllers.GetModels)
 		model.GET("/model", controllers.GetModelById)
+		model.GET("/models/brand", controllers.GetModelByBrandId)
 		model.POST("/models/create", controllers.CreateModels)
 		model.PUT("/model/update", controllers.UpdateModel)
 		model.PUT("/model/delete", controllers.DeleteModel)

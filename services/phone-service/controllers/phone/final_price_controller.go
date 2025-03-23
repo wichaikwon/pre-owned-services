@@ -16,23 +16,30 @@ func FinalPrice(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
 		return
 	}
-	var prices []models.PriceDeductions
-	if err := c.ShouldBindJSON(&prices); err != nil {
-		var price models.PriceDeductions
-		if err := c.ShouldBindJSON(&price); err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-			return
-		}
-		prices = append(prices, price)
+
+	type RequestBody struct {
+		PhoneID        string   `json:"phoneId"`
+		DefectChoiceID []string `json:"defectChoiceId"`
 	}
+
+	var requestBodies []RequestBody
+	if err := c.ShouldBindJSON(&requestBodies); err != nil {
+		c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+		return
+	}
+
 	var deductions []float64
-	for _, price := range prices {
-		if err := config.DB.Where("phone_id = ? AND defect_choice_id = ?", price.PhoneID, price.DefectChoiceID).Find(&price).Error; err != nil {
-			c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
-			return
+	for _, requestBody := range requestBodies {
+		for _, defectChoiceID := range requestBody.DefectChoiceID {
+			var price models.PriceDeductions
+			if err := config.DB.Where("phone_id = ? AND defect_choice_id = ?", requestBody.PhoneID, defectChoiceID).Find(&price).Error; err != nil {
+				c.JSON(http.StatusBadRequest, gin.H{"error": err.Error()})
+				return
+			}
+			deductions = append(deductions, price.Deduction)
 		}
-		deductions = append(deductions, price.Deduction)
 	}
+
 	sort.Sort(sort.Reverse(sort.Float64Slice(deductions)))
 	for _, deduction := range deductions {
 		if (phone.Price - deduction) >= phone.MinPrice {
@@ -41,5 +48,6 @@ func FinalPrice(c *gin.Context) {
 			continue
 		}
 	}
+
 	c.JSON(http.StatusOK, gin.H{"Price": phone.Price})
 }

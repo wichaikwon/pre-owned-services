@@ -15,7 +15,6 @@ type Defect struct {
 	UpdatedAt  string `json:"updatedAt"`
 }
 
-// FetchDefects fetches defect data from API
 func FetchDefects() ([]Defect, error) {
 	resp, err := http.Get("http://localhost:8080/defects/defects")
 	if err != nil {
@@ -23,12 +22,10 @@ func FetchDefects() ([]Defect, error) {
 	}
 	defer resp.Body.Close()
 
-	// Check for HTTP response status
 	if resp.StatusCode != http.StatusOK {
 		return nil, fmt.Errorf("failed to fetch defects: HTTP %d %s", resp.StatusCode, resp.Status)
 	}
 
-	// Decode response into []Defect
 	var defects []Defect
 	if err := json.NewDecoder(resp.Body).Decode(&defects); err != nil {
 		return nil, fmt.Errorf("failed to decode response: %w", err)

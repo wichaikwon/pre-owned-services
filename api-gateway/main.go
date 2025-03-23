@@ -37,6 +37,7 @@ func main() {
 	{
 		modelRoutes.GET("/models", reverseProxy("http://localhost:8082"))
 		modelRoutes.GET("/model", reverseProxy("http://localhost:8082"))
+		modelRoutes.GET("/models/brand", reverseProxy("http://localhost:8082"))
 	}
 	storageRoutes := r.Group("/storages")
 	{
@@ -61,6 +62,11 @@ func main() {
 		phoneRoutes.GET("/price-deductions", reverseProxy("http://localhost:8086"))
 		phoneRoutes.GET("/price-deduction", reverseProxy("http://localhost:8086"))
 		phoneRoutes.GET("/price-deductions/phone", reverseProxy("http://localhost:8086"))
+		phoneRoutes.GET("/view-storages", reverseProxy("http://localhost:8086"))
+		phoneRoutes.GET("/view-phones", reverseProxy("http://localhost:8086"))
+		phoneRoutes.GET("/view-phone", reverseProxy("http://localhost:8086"))
+		phoneRoutes.GET("/view-brands", reverseProxy("http://localhost:8086"))
+		phoneRoutes.GET("/view-models", reverseProxy("http://localhost:8086"))
 	}
 
 	r.GET("/", func(c *gin.Context) {

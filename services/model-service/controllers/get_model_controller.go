@@ -26,3 +26,13 @@ func GetModelById(c *gin.Context) {
 	}
 	c.JSON(http.StatusOK, models)
 }
+
+func GetModelByBrandId(c *gin.Context) {
+	var models []models.Models
+	brandId := c.Query("brand_id")
+	if err := config.DB.Where("brand_id = ? AND is_deleted = false", brandId).Order("model_code asc").Find(&models).Error; err != nil {
+		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "Failed to fetch models"})
+		return
+	}
+	c.JSON(http.StatusOK, models)
+}
