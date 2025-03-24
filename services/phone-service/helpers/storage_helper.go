@@ -8,22 +8,25 @@ import (
 	"github.com/google/uuid"
 )
 
-type Storage struct {
-	ID uuid.UUID `json:"id"`
+type Storages struct {
+	ID           uuid.UUID `json:"id"`
+	StorageCode  string    `json:"storageCode"`
+	StorageValue string    `json:"storageValue"`
+	IsDeleted    bool      `json:"isDeleted"`
 }
 
-func FindStorageByID(id uuid.UUID) (Storage, error) {
+func FindStorageByID(id uuid.UUID) (Storages, error) {
 	resp, err := http.Get("http://localhost:8080/storages/storage?id=" + id.String())
 	if err != nil {
-		return Storage{}, fmt.Errorf("failed to make request: %w", err)
+		return Storages{}, fmt.Errorf("failed to make request: %w", err)
 	}
 	defer resp.Body.Close()
 	if resp.StatusCode != http.StatusOK {
-		return Storage{}, fmt.Errorf("failed to fetch storage: HTTP %d %s", resp.StatusCode, resp.Status)
+		return Storages{}, fmt.Errorf("failed to fetch storage: HTTP %d %s", resp.StatusCode, resp.Status)
 	}
-	var storage Storage
+	var storage Storages
 	if err := json.NewDecoder(resp.Body).Decode(&storage); err != nil {
-		return Storage{}, fmt.Errorf("failed to decode response: %w", err)
+		return Storages{}, fmt.Errorf("failed to decode response: %w", err)
 	}
 	return storage, nil
 }

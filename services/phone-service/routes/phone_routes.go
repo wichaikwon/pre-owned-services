@@ -25,13 +25,15 @@ func PhoneRoutes(r *gin.Engine) {
 		phone.GET("/price-deductions/phone", configControllers.GetPriceDeductionByPhoneID)
 		phone.GET("/view-brands", phoneControllers.GetViewBrands)
 		phone.GET("/view-models", phoneControllers.GetViewModelsByBrandID)
+		phone.GET("storages", phoneControllers.GetStoragesByModelID)
 		phone.GET("/view-storages", phoneControllers.GetViewStoragesByModelID)
-		phone.GET("/view-phones", phoneControllers.GetViewPhoneWithDuctionsByPhoneId)
+		phone.GET("/view-phones", phoneControllers.GetViewPhones)
+		phone.GET("/view-phone-with-deductions", phoneControllers.GetViewPhoneWithDuctionsByPhoneId)
 		phone.GET("/view-phone", phoneControllers.GetViewPhone)
 		phone.POST("final-price", phoneControllers.FinalPrice)
-		phone.PATCH("/price-deductions/update", configControllers.UpdateDeductions)
 		phone.POST("/phone/create", phoneControllers.CreatePhones)
-		phone.PUT("/phone/update", phoneControllers.UpdatePhone)
+		phone.PATCH("/price-deductions/update", configControllers.UpdateDeductions)
 		phone.PATCH("/phone/delete", phoneControllers.DeletePhone)
+		phone.PUT("/phone/update", phoneControllers.UpdatePhone)
 	}
 }

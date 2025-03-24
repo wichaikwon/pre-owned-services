@@ -1,9 +1,13 @@
 package models
 
-import "time"
+import (
+	"time"
+
+	"github.com/google/uuid"
+)
 
 type Storages struct {
-	ID           string    `json:"id" gorm:"type:uuid;primaryKey;default:uuid_generate_v4()"`
+	ID           uuid.UUID `json:"id" gorm:"type:uuid;primaryKey;default:uuid_generate_v4()"`
 	StorageCode  string    `json:"storageCode" gorm:"unique"`
 	StorageValue string    `json:"storageValue"`
 	CreatedAt    time.Time `json:"createdAt" gorm:"autoCreateTime"`

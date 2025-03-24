@@ -49,5 +49,5 @@ func FinalPrice(c *gin.Context) {
 		}
 	}
 
-	c.JSON(http.StatusOK, gin.H{"Price": phone.Price})
+	c.JSON(http.StatusOK, phone.Price)
 }
