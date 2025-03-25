@@ -2,6 +2,7 @@ services:
   auth-service:
     build:
       context: ./services/auth-service
+      dockerfile: dockerfile
     networks:
       - pre-owned-network
     environment:
@@ -12,6 +13,7 @@ services:
   brand-service:
     build:
       context: ./services/brand-service
+      dockerfile: dockerfile
     networks:
       - pre-owned-network
     environment:
@@ -22,6 +24,7 @@ services:
   model-service:
     build:
       context: ./services/model-service
+      dockerfile: dockerfile
     networks:
       - pre-owned-network
     environment:
@@ -32,6 +35,7 @@ services:
   storage-service:
     build:
       context: ./services/storage-service
+      dockerfile: dockerfile
     networks:
       - pre-owned-network
     environment:
@@ -41,6 +45,7 @@ services:
   defect-service:
     build:
       context: ./services/defect-service
+      dockerfile: dockerfile
     networks:
       - pre-owned-network
     environment:
@@ -50,6 +55,7 @@ services:
   defect_choice-service:
     build:
       context: ./services/defect_choice-service
+      dockerfile: dockerfile
     networks:
       - pre-owned-network
     environment:
@@ -59,33 +65,23 @@ services:
   phone-service:
     build:
       context: ./services/phone-service
+      dockerfile: dockerfile
     networks:
       - pre-owned-network
     environment:
       - POSTGRES_USER=${POSTGRES_USER}
       - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
       - POSTGRES_DB=${POSTGRES_DB}
-      
-  postgres:
+
+  db:
+    container_name: db
     image: postgres:14
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: preowned
     ports:
-      - "5433:5432"
-    networks:
-      - pre-owned-network
-
-  db:
-    container_name: db
-    image: postgres:17.3-alpine3.20
-    environment:
-      POSTGRES_DB: preowned
-      POSTGRES_USER: postgres
-      POSTGRES_PASSWORD: postgres
-    ports:
-      - "5434:5432"
+      - "5432:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:
@@ -94,3 +90,6 @@ services:
 networks:
   pre-owned-network:
     driver: bridge
+
+volumes:
+  pgdata:
