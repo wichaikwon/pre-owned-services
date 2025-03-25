@@ -10,10 +10,10 @@ RUN go mod download
 COPY . .
 
 # Build the application
-RUN go build -o auth_main .
+RUN go build -o main .
 
 # Expose the port
 EXPOSE 8080
 
 # Run the application
-CMD ["./auth_main"]
+CMD ["./main"]

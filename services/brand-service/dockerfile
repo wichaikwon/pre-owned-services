@@ -12,3 +12,4 @@ RUN go build -o brand_main .
 EXPOSE 8081
 
 CMD ["./brand_main"]
+

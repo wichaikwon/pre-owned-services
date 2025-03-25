@@ -12,11 +12,14 @@ import (
 
 var DB *gorm.DB
 
-func ConnectDB() {
-	databaseURL := os.Getenv("DATABASE_URL")
-	db, err := gorm.Open(postgres.Open(databaseURL), &gorm.Config{})
+func ConnectDatabase() {
+	dsn := "host=db user=" + os.Getenv("POSTGRES_USER") +
+		" password=" + os.Getenv("POSTGRES_PASSWORD") +
+		" dbname=" + os.Getenv("POSTGRES_DB") +
+		" port=5432 sslmode=disable TimeZone=Asia/Bangkok"
+	db, err := gorm.Open(postgres.Open(dsn), &gorm.Config{})
 	if err != nil {
-		log.Fatal("❌ Failed to connect to database:", err)
+		panic("Failed to connect to database!")
 	}
 
 	fmt.Println("✅ Database Connected Successfully!")
