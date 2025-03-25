@@ -10,10 +10,11 @@ type ViewPhoneWithDeductions struct {
 	PhoneID      string  `json:"phoneId"`
 	PhoneName    string  `json:"phoneName"`
 	DefectID     string  `json:"defectId"`
-	Index        int     `json:"index"`
+	DefectIndex  int     `json:"defectIndex"`
 	DefectName   string  `json:"defectName"`
 	ConfigID     string  `json:"configId"`
 	ChoiceID     string  `json:"choiceId"`
+	ChoiceIndex  int     `json:"choiceIndex"`
 	ChoiceName   string  `json:"choiceName"`
 	Price        float64 `json:"price"`
 	MinPrice     float64 `json:"minPrice"`

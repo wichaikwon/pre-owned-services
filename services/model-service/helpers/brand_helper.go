@@ -9,10 +9,10 @@ import (
 )
 
 type Brand struct {
-	ID        string `json:"id"`
-	BrandCode string `json:"brandCode"`
-	BrandName string `json:"brandName"`
-	IsDeleted bool   `json:"isDeleted"`
+	ID        uuid.UUID `json:"id"`
+	BrandCode string    `json:"brandCode"`
+	BrandName string    `json:"brandName"`
+	IsDeleted bool      `json:"isDeleted"`
 }
 
 func CheckBrandExists(brandId uuid.UUID) (bool, error) {
@@ -29,7 +29,7 @@ func CheckBrandExists(brandId uuid.UUID) (bool, error) {
 	if err := json.NewDecoder(resp.Body).Decode(&brand); err != nil {
 		return false, fmt.Errorf("failed to decode response: %w", err)
 	}
-	if brand.ID == brandId.String() && !brand.IsDeleted {
+	if brand.ID == brandId && !brand.IsDeleted {
 		return true, nil
 	}
 

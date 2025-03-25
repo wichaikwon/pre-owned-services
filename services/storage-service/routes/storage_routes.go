@@ -19,7 +19,7 @@ func StorageRoutes(r *gin.Engine) {
 	{
 		storage.GET("/storages", controllers.GetStorages)
 		storage.GET("/storage", controllers.GetStorageById)
-		storage.POST("/storage/create", controllers.CreateStorage)
+		storage.POST("/storages/create", controllers.CreateStorage)
 		storage.PUT("/storage/update", controllers.UpdateStorage)
 		storage.PUT("/storage/delete", controllers.DeleteStorage)
 	}
