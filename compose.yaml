@@ -1,119 +1,90 @@
-version: '3.8'
-
 services:
-  api-gateway:
-    build:
-      context: ./services/api-gateway
-      dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
-    networks:
-      - pre-owned-network
-    environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
-      
   auth-service:
     build:
       context: ./services/auth-service
-      dockerfile: Dockerfile
     ports:
-      - "8088:8088"
+      - "8088:8080" 
     networks:
       - pre-owned-network
-    environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
+    env_file:
+      - .env
 
   brand-service:
     build:
       context: ./services/brand-service
-      dockerfile: Dockerfile
     ports:
-      - "8081:8081"
+      - "8081:8080" 
     networks:
       - pre-owned-network
-    environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
+    env_file:
+      - .env
 
   model-service:
     build:
       context: ./services/model-service
-      dockerfile: Dockerfile
     ports:
-      - "8082:8082"
+      - "8082:8080" 
     networks:
       - pre-owned-network
-    environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
+    env_file:
+      - .env
 
   storage-service:
     build:
       context: ./services/storage-service
-      dockerfile: Dockerfile
     ports:
-      - "8083:8083"
+      - "8083:8080" 
     networks:
       - pre-owned-network
-    environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
-
+    env_file:
+      - .env
   defect-service:
     build:
       context: ./services/defect-service
-      dockerfile: Dockerfile
     ports:
-      - "8084:8084"
+      - "8084:8080" 
     networks:
       - pre-owned-network
-    environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
-
+    env_file:
+      - .env
   defect_choice-service:
     build:
       context: ./services/defect_choice-service
-      dockerfile: Dockerfile
     ports:
-      - "8085:8085"
+      - "8085:8080" 
     networks:
       - pre-owned-network
-    environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
-
+    env_file:
+      - .env
   phone-service:
     build:
       context: ./services/phone-service
-      dockerfile: Dockerfile
     ports:
-      - "8086:8086"
+      - "8086:8080" 
     networks:
       - pre-owned-network
-    environment:
-      - POSTGRES_USER=${POSTGRES_USER}
-      - POSTGRES_PASSWORD=${POSTGRES_PASSWORD}
-      - POSTGRES_DB=${POSTGRES_DB}
-
-  db:
-    container_name: db
+    env_file:
+      - .env
+  postgres:
     image: postgres:14
     environment:
       POSTGRES_USER: postgres
       POSTGRES_PASSWORD: postgres
       POSTGRES_DB: preowned
     ports:
-      - "5432:5432"
+      - "5433:5432"
+    networks:
+      - pre-owned-network
+
+  db:
+    container_name: db
+    image: postgres:17.3-alpine3.20
+    environment:
+      POSTGRES_DB: preowned
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+    ports:
+      - "5434:5432"
     volumes:
       - pgdata:/var/lib/postgresql/data
     networks:

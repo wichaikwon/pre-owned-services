@@ -9,7 +9,7 @@ import (
 )
 
 func main() {
-	config.ConnectDatabase()
+	config.ConnectDB()
 
 	r := gin.Default()
 	r.Use(func(c *gin.Context) {
