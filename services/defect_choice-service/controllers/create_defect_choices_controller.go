@@ -44,7 +44,7 @@ func CheckDefectExists(defectId string) (bool, error) {
 func ValidateDefectChoice(c *gin.Context, defectChoice models.DefectChoices) bool {
 	var existingDefect models.DefectChoices
 	if err := config.DB.Where("choice_code = ?", defectChoice.ChoiceCode).First(&existingDefect).Error; err == nil {
-		c.JSON(http.StatusOK, gin.H{"success": false, "error": "choiceCode already exists"})
+		c.JSON(http.StatusOK, gin.H{"success": false, "error": "choice code already exists"})
 		return false
 	} else if err.Error() != "record not found" {
 		c.JSON(http.StatusOK, gin.H{"success": false, "error": "database error: " + err.Error()})

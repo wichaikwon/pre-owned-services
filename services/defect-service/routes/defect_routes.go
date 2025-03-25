@@ -21,6 +21,6 @@ func DefectRoutes(r *gin.Engine) {
 		defect.GET("/defect", controllers.GetDefectByID)
 		defect.POST("/defect/create", controllers.CreateDefect)
 		defect.PUT("/defect/update", controllers.UpdateDefect)
-		defect.PUT("/defect/delete", controllers.DeleteDefect)
+		defect.PATCH("/defect/delete", controllers.DeleteDefect)
 	}
 }
