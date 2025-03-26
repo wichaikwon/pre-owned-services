@@ -51,10 +51,9 @@ func CreatePhones(c *gin.Context) {
 		configBrands, err := helpers.FetchConfigBrands()
 
 		if err != nil {
-			c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": "Failed to fetch config brands"})
+			c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": configBrands})
 			return
 		}
-		c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": fmt.Sprintf("No valid config brands available for phone_code: %s", phone.PhoneCode)})
 		filteredConfigBrands := []helpers.ConfigBrand{}
 		for _, configBrand := range configBrands {
 			if configBrand.BrandID == phone.BrandID && !configBrand.IsDeleted {
