@@ -17,6 +17,7 @@ func ConnectDB() {
 	if databaseURL == "" {
 		log.Fatal("❌ DATABASE_URL is not set in .env file")
 	}
+
 	db, err := gorm.Open(postgres.Open(databaseURL), &gorm.Config{})
 	if err != nil {
 		log.Fatal("❌ Failed to connect to database:", err)

@@ -3,7 +3,7 @@ WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
 COPY . .
-RUN go build -o defect_main .
+RUN go build -o main .
 EXPOSE 8084
-CMD ["./defect_main"]
+CMD ["./main"]
 

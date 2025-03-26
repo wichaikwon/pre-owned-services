@@ -3,7 +3,7 @@ WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
 COPY . .
-RUN go build -o phone_main .
+RUN go build -o main .
 EXPOSE 8086
-CMD ["./phone_main"]
+CMD ["./main"]
 

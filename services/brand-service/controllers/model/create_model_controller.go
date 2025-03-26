@@ -1,10 +1,9 @@
 package controllers
 
 import (
+	"brand-service/config"
+	"brand-service/models"
 	"errors"
-	"model-service/config"
-	"model-service/helpers"
-	"model-service/models"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
@@ -24,7 +23,7 @@ func CreateModels(c *gin.Context) {
 	var newModels []models.Models
 	for _, model := range inputModels {
 		var existingModel models.Models
-		var brand helpers.Brand
+		var brand models.Brands
 		if model.ModelCode == "" || model.ModelName == "" || model.BrandID.String() == "" {
 			c.JSON(http.StatusBadRequest, gin.H{"success": false, "error": "Model code, name, and brand ID cannot be empty"})
 			return

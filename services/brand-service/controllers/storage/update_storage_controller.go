@@ -1,9 +1,9 @@
 package controllers
 
 import (
+	"brand-service/config"
+	"brand-service/models"
 	"net/http"
-	"storage-service/config"
-	"storage-service/models"
 
 	"github.com/gin-gonic/gin"
 )

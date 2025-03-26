@@ -1,8 +1,8 @@
 package controllers
 
 import (
-	"defect_choice-service/config"
-	"defect_choice-service/models"
+	"defect-service/config"
+	"defect-service/models"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
