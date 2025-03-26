@@ -62,7 +62,7 @@ func CreatePhones(c *gin.Context) {
 		}
 
 		if len(filteredConfigBrands) == 0 {
-			c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": fmt.Sprintf("No valid config brands available for phone_code: %s", phone.PhoneCode)})
+			c.JSON(http.StatusInternalServerError, gin.H{"success": false, "error": configBrands})
 			return
 		}
 
