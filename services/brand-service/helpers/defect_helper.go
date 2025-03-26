@@ -16,7 +16,7 @@ type Defect struct {
 }
 
 func FetchDefects() ([]Defect, error) {
-	resp, err := http.Get("http://localhost:8084/defects/defects")
+	resp, err := http.Get("pre-owned-defect-service-production.up.railway.app/defects/defects")
 	if err != nil {
 		return nil, fmt.Errorf("failed to make request: %w", err)
 	}
