@@ -11,9 +11,9 @@ import (
 func AuthRoutes(r *gin.Engine) {
 
 	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:3000", "https://pre-owned-app.vercel.app", "https://pre-owned-auth-service-production.up.railway.app"},
+		AllowOrigins:     []string{"https://pre-owned-app.vercel.app"},
 		AllowMethods:     []string{"PUT", "PATCH", "DELETE", "OPTIONS"},
-		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization"},
+		AllowHeaders:     []string{"Origin", "Content-Type", "Authorization", "Accept"},
 		ExposeHeaders:    []string{"Content-Length"},
 		AllowCredentials: true,
 	}))
