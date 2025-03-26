@@ -3,5 +3,5 @@ WORKDIR /app
 COPY go.mod go.sum ./
 RUN go mod download
 COPY . .
-RUN go build -o model_main
+RUN go build -o model_main .
 CMD ["./model_main"]

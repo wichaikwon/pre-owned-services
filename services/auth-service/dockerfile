@@ -1,19 +1,9 @@
-FROM golang:1.20-alpine
+FROM golang:1.24-alpine
 
 WORKDIR /app
-
-# Copy dependencies
 COPY go.mod go.sum ./
 RUN go mod download
-
-# Copy source code
 COPY . .
-
-# Build the application
 RUN go build -o auth_main .
-
-# Expose the port
 EXPOSE 8080
-
-# Run the application
 CMD ["./auth_main"]

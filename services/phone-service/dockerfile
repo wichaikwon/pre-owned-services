@@ -7,8 +7,9 @@ RUN go mod download
 
 COPY . .
 
-RUN go build -o main .
+RUN go build -o phone_main .
 
-EXPOSE 8080
+EXPOSE 8086
 
-CMD ["./main"]
+CMD ["./phone_main"]
+

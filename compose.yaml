@@ -1,7 +1,20 @@
 services:
+  api-gateway:
+    build:
+      context: ./api-gateway
+      dockerfile: dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_USER=${DB_USER}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - DB_NAME=${DB_NAME}
+      - DB_PORT=${DB_PORT}
   auth-service:
     build:
       context: ./services/auth-service
+      dockerfile: dockerfile
     ports:
       - "8088:8080" 
     networks:
@@ -12,6 +25,7 @@ services:
   brand-service:
     build:
       context: ./services/brand-service
+      dockerfile: dockerfile
     ports:
       - "8081:8080" 
     networks:
@@ -22,6 +36,7 @@ services:
   model-service:
     build:
       context: ./services/model-service
+      dockerfile: dockerfile
     ports:
       - "8082:8080" 
     networks:
@@ -32,6 +47,7 @@ services:
   storage-service:
     build:
       context: ./services/storage-service
+      dockerfile: dockerfile
     ports:
       - "8083:8080" 
     networks:
@@ -41,6 +57,7 @@ services:
   defect-service:
     build:
       context: ./services/defect-service
+      dockerfile: dockerfile
     ports:
       - "8084:8080" 
     networks:
@@ -50,6 +67,7 @@ services:
   defect_choice-service:
     build:
       context: ./services/defect_choice-service
+      dockerfile: dockerfile
     ports:
       - "8085:8080" 
     networks:
@@ -59,6 +77,7 @@ services:
   phone-service:
     build:
       context: ./services/phone-service
+      dockerfile: dockerfile
     ports:
       - "8086:8080" 
     networks:
