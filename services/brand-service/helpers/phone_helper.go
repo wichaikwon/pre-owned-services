@@ -13,7 +13,7 @@ type Phone struct {
 }
 
 func FetchPhones(ID uuid.UUID) ([]Phone, error) {
-	url := fmt.Sprintf("http://localhost:8080/phones/phone?id=%s", ID.String())
+	url := fmt.Sprintf("https://pre-owned-phone-service-production.up.railway.app/phones/phone?id=%s", ID.String())
 	resp, err := http.Get(url)
 	if err != nil {
 		return nil, fmt.Errorf("failed to make request: %w", err)

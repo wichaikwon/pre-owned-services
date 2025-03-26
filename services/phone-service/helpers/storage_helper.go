@@ -16,7 +16,7 @@ type Storages struct {
 }
 
 func FindStorageByID(id uuid.UUID) (Storages, error) {
-	resp, err := http.Get("http://localhost:8080/storages/storage?id=" + id.String())
+	resp, err := http.Get("https://pre-owned-brand-service-production.up.railway.app/storages/storage?id=" + id.String())
 	if err != nil {
 		return Storages{}, fmt.Errorf("failed to make request: %w", err)
 	}

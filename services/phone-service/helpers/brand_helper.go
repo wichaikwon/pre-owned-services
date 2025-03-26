@@ -17,7 +17,7 @@ type Brand struct {
 
 func FindBrandByID(id uuid.UUID) (Brand, error) {
 
-	resp, err := http.Get("http://localhost:8080/brands/brand?id=" + id.String())
+	resp, err := http.Get("https://pre-owned-brand-service-production.up.railway.app/brands/brand?id=" + id.String())
 	if err != nil {
 		return Brand{}, fmt.Errorf("failed to make request: %w", err)
 	}

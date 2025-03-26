@@ -17,7 +17,7 @@ type Model struct {
 }
 
 func FindModelByID(id uuid.UUID) (Model, error) {
-	resp, err := http.Get("http://localhost:8080/models/model?id=" + id.String())
+	resp, err := http.Get("https://pre-owned-brand-service-production.up.railway.app/models/model?id=" + id.String())
 	if err != nil {
 		return Model{}, fmt.Errorf("failed to make request: %w", err)
 	}

@@ -19,7 +19,7 @@ type DefectChoice struct {
 }
 
 func FetchDefectChoices(defectID uuid.UUID) ([]DefectChoice, error) {
-	url := fmt.Sprintf("http://localhost:8084/defect-choices/defect-choice/defects?id=%s", defectID.String())
+	url := fmt.Sprintf("https://pre-owned-defect-service-production.up.railway.app/defect-choices/defect-choice/defects?id=%s", defectID.String())
 
 	resp, err := http.Get(url)
 	if err != nil {

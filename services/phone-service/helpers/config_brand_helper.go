@@ -20,7 +20,7 @@ type ConfigBrand struct {
 }
 
 func FetchConfigBrands() ([]ConfigBrand, error) {
-	resp, err := http.Get("http://localhost:8081/brands/config-brands")
+	resp, err := http.Get("https://pre-owned-brand-service-production.up.railway.app/brands/config-brands")
 	if err != nil {
 		return nil, fmt.Errorf("failed to make request: %w", err)
 	}
