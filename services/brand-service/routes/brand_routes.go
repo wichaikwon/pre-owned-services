@@ -12,7 +12,7 @@ import (
 
 func BrandRoutes(r *gin.Engine) {
 	r.Use(cors.New(cors.Config{
-		AllowOrigins:     []string{"http://localhost:3000", "https://pre-owned-app.vercel.app"},
+		AllowOrigins:     []string{"https://pre-owned-app.vercel.app", "http://localhost:3000"},
 		AllowMethods:     []string{"PUT", "PATCH", "DELETE", "OPTIONS"},
 		AllowHeaders:     []string{"Origin", "Content-Type", "Accept", "Authorization"},
 		ExposeHeaders:    []string{"Content-Length"},
