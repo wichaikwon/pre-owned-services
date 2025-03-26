@@ -1,15 +1,9 @@
 FROM golang:1.24-alpine
-
 WORKDIR /app
-
 COPY go.mod go.sum ./
 RUN go mod download
-
 COPY . .
-
 RUN go build -o brand_main .
-
 EXPOSE 8081
-
 CMD ["./brand_main"]
 
